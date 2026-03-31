@@ -54,8 +54,12 @@ Before hosting, insert your API keys into the codebase:
 
 ---
 
-## 👥 Default Accounts (If mocking)
-If you wish to mock logins without registering:
-*   **Student:** `student@example.com` / `student`
-*   **Admin:** `admin@example.com` / `admin`
-*(Note: These require registration in your Supabase Auth panel first)*
+## 👥 Accounts & Registration
+
+To get started, simply open `register.html` in your browser and create an account — no manual Supabase configuration needed. The registration page handles account creation automatically via Supabase Auth.
+
+*   Choose **Student** or **Admin** mode before submitting the form.
+*   You can use a plain username (e.g. `john`) and it will be stored as `john@example.com`, or enter a full email address.
+*   Password must be at least **6 characters**, contain one **uppercase letter**, and one **number**.
+
+> **Tip:** For quick testing, just register a new account — it takes seconds and no Supabase dashboard access is required.
