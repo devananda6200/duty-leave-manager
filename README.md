@@ -1,5 +1,8 @@
 # Duty-Leave Manager 🎓
 
+Check it out live:
+https://duty-leave-manager.netlify.app/
+
 A modern, real-time web application built for colleges and universities to digitally manage student duty leaves. It streamlines the entire process—from student applications and document uploads to multi-tier faculty approvals.
 
 ## 🚀 Key Features
