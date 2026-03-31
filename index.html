@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duty-Leave Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass-panel" id="sidebar">
+            <div class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h2>Duty-Leave</h2>
+                <button id="btn-sidebar-toggle" class="btn-sidebar-toggle"><i class="fa-solid fa-chevron-left"></i></button>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" id="nav-dashboard"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a>
+                <a href="#" class="nav-item" id="nav-apply"><i class="fa-solid fa-calendar-plus"></i> <span>Apply Leave</span></a>
+                <a href="#" class="nav-item" id="nav-documents"><i class="fa-solid fa-folder-open"></i> <span>Documents</span></a>
+                <a href="#" class="nav-item" id="nav-history"><i class="fa-solid fa-table-list"></i> <span>Leave Record</span></a>
+            </nav>
+            <div class="user-profile">
+                <img src="https://ui-avatars.com/api/?name=Student+Name&background=8b5cf6&color=fff" alt="User Avatar">
+                <div class="user-info">
+                    <span class="user-name" id="user-display-name">Student Name</span>
+                    <span class="user-role">CS Department</span>
+                </div>
+            </div>
+            <button id="btn-logout" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <h1 id="page-title">Dashboard Overview</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" id="btn-new-request"><i class="fa-solid fa-plus"></i> New Request</button>
+                    <div class="notification-icon">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="badge" id="notification-badge">2</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="section-dashboard" class="page-section active">
+                <div class="stats-grid">
+                    <div class="stat-card glass-panel">
+                        <div class="stat-icon purple-gradient"><i class="fa-solid fa-check-circle"></i></div>
+                        <div class="stat-details">
+                            <h3 style="font-size: 0.95rem;">Duty Leaves Taken</h3>
+                            <p class="stat-value" id="stat-approved">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-panel">
+                        <div class="stat-icon teal-gradient"><i class="fa-solid fa-clock"></i></div>
+                        <div class="stat-details">
+                            <h3>Pending Requests</h3>
+                            <p class="stat-value" id="stat-pending">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-panel warning-card">
+                        <div class="stat-icon orange-gradient"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div class="stat-details">
+                            <h3>Action Required</h3>
+                            <p class="stat-value" id="stat-reminders">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-bottom">
+                    <div class="recent-leaves glass-panel">
+                        <div class="panel-header">
+                            <h3>Recent Applications</h3>
+                            <button class="btn-text">View All</button>
+                        </div>
+                        <div class="leave-list" id="recent-leave-list">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    <div class="pending-documents glass-panel" style="display: flex; flex-direction: column;">
+                        <div class="panel-header">
+                            <h3>Pending Documents</h3>
+                        </div>
+                        <div class="documents-grid" id="documents-grid-list">
+                            <!-- Populated by JS for a refined documents look -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Apply Leave Section -->
+            <section id="section-apply" class="page-section hidden">
+                <div class="form-container glass-panel">
+                    <h2>Apply for Duty-Leave</h2>
+                    <form id="leave-form">
+                        <div class="form-group">
+                            <label for="event-name">Event Name</label>
+                            <input type="text" id="event-name" placeholder="e.g. Hackathon 2026" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="start-date">Start Date</label>
+                                <input type="date" id="start-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="end-date">End Date</label>
+                                <input type="date" id="end-date" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reason">Reason for Leave</label>
+                            <textarea id="reason" rows="4" placeholder="Briefly describe why you need this leave..." required></textarea>
+                        </div>
+                        <div class="form-group document-upload-group">
+                            <label>Supporting Documents</label>
+                            <div class="file-input-wrapper" style="background: rgba(0,0,0,0.1); padding: 15px; border-radius: 8px; border: 1px dashed var(--glass-border);">
+                                <label for="permission-slip" style="display: block; margin-bottom: 8px; color: var(--text-secondary); font-size: 0.9rem;">Upload Permission Slip / Brochure (Required)</label>
+                                <input type="file" id="permission-slip" accept=".pdf,.jpg,.png" required style="width: 100%; color: white;">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary" id="submit-leave-btn">Submit Application</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+             <!-- Documents/Vault Section -->
+             <section id="section-documents" class="page-section hidden">
+                <div class="glass-panel" style="padding: 30px;">
+                    <h2 style="margin-bottom: 20px;">My Documents Vault</h2>
+                    <div class="documents-grid vault-grid" id="vault-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+             </section>
+
+             <!-- Leave Record/History Section -->
+             <section id="section-history" class="page-section hidden">
+                <div class="glass-panel" style="padding: 30px;">
+                    <h2 style="margin-bottom: 20px;">Duty Leaves Record</h2>
+                    <div style="overflow-x: auto;">
+                        <table class="leaves-table" style="width: 100%; text-align: left; border-collapse: collapse;">
+                            <thead>
+                                <tr style="border-bottom: 1px solid var(--glass-border);">
+                                    <th style="padding: 12px; color: var(--text-secondary);">Event Title</th>
+                                    <th style="padding: 12px; color: var(--text-secondary);">Dates</th>
+                                    <th style="padding: 12px; color: var(--text-secondary);">Reason</th>
+                                    <th style="padding: 12px; color: var(--text-secondary);">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="student-history-tbody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+             </section>
+        </main>
+    </div>
+
+    <!-- Supabase -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Replace with your actual Public API Key from the EmailJS dashboard
+            emailjs.init("YOUR_PUBLIC_KEY");
+        })();
+    </script>
+
+    <!-- App Logic -->
+    <script src="app.js"></script>
+</body>
+</html>

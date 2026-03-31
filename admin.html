@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Duty-Leave Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass-panel" id="sidebar">
+            <div class="logo">
+                <div class="logo-icon" style="background: var(--gradient-orange)"><i class="fa-solid fa-user-shield"></i></div>
+                <h2>Admin Portal</h2>
+                <button id="btn-sidebar-toggle" class="btn-sidebar-toggle"><i class="fa-solid fa-chevron-left"></i></button>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" id="nav-pending"><i class="fa-solid fa-clipboard-check"></i> <span>Approvals</span></a>
+                <a href="#" class="nav-item" id="nav-history"><i class="fa-solid fa-clock-rotate-left"></i> <span>History</span></a>
+            </nav>
+            <div class="user-profile">
+                <img src="https://ui-avatars.com/api/?name=Admin&background=f59e0b&color=fff" alt="Admin Avatar">
+                <div class="user-info">
+                    <span class="user-name">Faculty</span>
+                    <span class="user-role">Approver</span>
+                </div>
+            </div>
+            <button id="btn-logout" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <h1 id="page-title">Pending Approvals</h1>
+            </header>
+
+            <section id="section-pending" class="page-section active">
+                <div class="admin-leaves-list" id="admin-leaves-list">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+            
+            <section id="section-history" class="page-section hidden">
+                <div class="admin-leaves-list" id="history-leaves-list">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- Supabase -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
