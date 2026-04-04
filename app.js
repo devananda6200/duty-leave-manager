@@ -58,6 +58,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const sections = document.querySelectorAll('.page-section');
     const pageTitle = document.getElementById('page-title');
     const btnNewRequest = document.getElementById('btn-new-request');
+    const btnViewAll = document.getElementById('btn-view-all');
+    const btnNotifications = document.getElementById('btn-notifications');
     
     const recentLeaveList = document.getElementById('recent-leave-list');
     const documentsGridList = document.getElementById('documents-grid-list');
@@ -223,6 +225,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     btnNewRequest.addEventListener('click', () => {
         switchSection('apply', 'Apply for Duty-Leave');
     });
+
+    if (btnViewAll) {
+        btnViewAll.addEventListener('click', () => {
+            switchSection('history', 'Duty Leaves Record');
+        });
+    }
+
+    if (btnNotifications) {
+        btnNotifications.addEventListener('click', () => {
+            switchSection('documents', 'My Documents Vault');
+        });
+    }
 
     const leaveForm = document.getElementById('leave-form');
     leaveForm.addEventListener('submit', async (e) => {

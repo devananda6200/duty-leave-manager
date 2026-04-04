@@ -40,7 +40,7 @@
                 <h1 id="page-title">Dashboard Overview</h1>
                 <div class="header-actions">
                     <button class="btn-primary" id="btn-new-request"><i class="fa-solid fa-plus"></i> New Request</button>
-                    <div class="notification-icon">
+                    <div class="notification-icon" id="btn-notifications" style="cursor: pointer;">
                         <i class="fa-regular fa-bell"></i>
                         <span class="badge" id="notification-badge">2</span>
                     </div>
@@ -77,7 +77,7 @@
                     <div class="recent-leaves glass-panel">
                         <div class="panel-header">
                             <h3>Recent Applications</h3>
-                            <button class="btn-text">View All</button>
+                            <button class="btn-text" id="btn-view-all">View All</button>
                         </div>
                         <div class="leave-list" id="recent-leave-list">
                             <!-- Populated by JS -->
